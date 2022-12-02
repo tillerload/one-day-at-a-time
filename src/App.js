@@ -1,7 +1,7 @@
 import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {ref, getDatabase, onValue} from './firebase.js';
+import {ref, getDatabase, onValue} from 'firebase/database';
 
 
 // Setup a state variable to store the user input data
@@ -23,9 +23,21 @@ function App() {
   const [moods, setMoods] = useState([]);
 
   useEffect(() => {
-    const database = getDatabase(firebase);
+    const database = getDatabase(app);
     const dbRef = ref(database);
-  })
+
+    onValue(dbRef, (response) => {
+      console.log(response.val());
+      const updatedDbInfo = [];
+      const data = response.val();
+      for (let key in data) {
+        console.log(data[key]);
+        updatedDbInfo.push(data[key]);
+      }
+      setMoods(updatedDbInfo);
+    })
+
+  }, [])
 
 
   return (
@@ -45,6 +57,21 @@ function App() {
         <h2>How does it work?</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
       </section>
+
+      <form action="submit">
+        <fieldset>
+          <legend>How are you feeling today?</legend>
+
+          <label htmlFor="happy">Happy</label>
+          <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' />
+
+          <label htmlFor="okay">Okay</label>
+          <input type="radio" name='mood-options' value={'okay'} id='okay-feeling' />
+
+          <label htmlFor="sad">Sad</label>
+          <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' />
+        </fieldset>
+      </form>
 
       {/* This is just gonna be the displayed data section */}
       <div>
