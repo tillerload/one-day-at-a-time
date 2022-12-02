@@ -1,5 +1,8 @@
 import app from './firebase.js';
 import './App.css';
+import {useState, useEffect} from 'react';
+import {ref, getDatabase, onValue} from './firebase.js';
+
 
 // Setup a state variable to store the user input data
 // create a map loop for our data from firebase, itll be an array so this lets me edit the new array created through map
@@ -16,6 +19,15 @@ import './App.css';
 
 
 function App() {
+
+  const [moods, setMoods] = useState([]);
+
+  useEffect(() => {
+    const database = getDatabase(firebase);
+    const dbRef = ref(database);
+  })
+
+
   return (
     <div className="App">
       <header>
@@ -33,6 +45,22 @@ function App() {
         <h2>How does it work?</h2>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
       </section>
+
+      {/* This is just gonna be the displayed data section */}
+      <div>
+        <ul>
+          {
+            moods.map((moods) => {
+              return(
+                <li>
+                  {moods}
+                </li>
+              )
+            })
+          }
+        </ul>
+      </div>
+      
 
       
     </div>
