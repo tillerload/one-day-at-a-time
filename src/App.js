@@ -1,7 +1,7 @@
 import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {ref, getDatabase, onValue} from 'firebase/database';
+import {ref, getDatabase, onValue, push, remove} from 'firebase/database';
 
 
 // Setup a state variable to store the user input data
@@ -22,22 +22,54 @@ function App() {
 
   const [moods, setMoods] = useState([]);
 
+  const [userInput, setUserInput] = useState('');
+
+
+
+  // const emotions = {
+  //   sad: {
+
+  //   }
+  // }
+
+
   useEffect(() => {
     const database = getDatabase(app);
     const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
-      console.log(response.val());
+      // console.log(response.val());
       const updatedDbInfo = [];
       const data = response.val();
-      for (let key in data) {
-        console.log(data[key]);
-        updatedDbInfo.push(data[key]);
+      for (let key in data ) {
+        // console.log(data[key]);
+        updatedDbInfo.push({key: key, name: data[key]});
+        console.log(key)
       }
       setMoods(updatedDbInfo);
     })
 
   }, [])
+
+
+  const handleInputChange = (e) => {
+    // console.log(e.target.value)
+    setUserInput(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const database = getDatabase(app);
+    const dbRef = ref(database);
+
+    push(dbRef, userInput);
+
+    // as of right now it seems i do not need to reset user inputs due to the radio buttons.
+    // setUserInput('');
+
+  }
+
 
 
   return (
@@ -63,31 +95,33 @@ function App() {
           <legend>How are you feeling today?</legend>
 
           <label htmlFor="happy">Happy</label>
-          <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' />
+          <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' onChange={handleInputChange}/>
 
           <label htmlFor="okay">Okay</label>
-          <input type="radio" name='mood-options' value={'okay'} id='okay-feeling' />
+          <input type="radio" name='mood-options' value={'okay'} id='okay-feeling' onChange={handleInputChange}/>
 
           <label htmlFor="sad">Sad</label>
-          <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' />
+          <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' onChange={handleInputChange}/>
         </fieldset>
+
+        <button onClick={handleSubmit}>Submit</button>
       </form>
 
       {/* This is just gonna be the displayed data section */}
       <div>
         <ul>
           {
-            moods.map((moods) => {
+            moods.map(moods => {
               return(
-                <li>
-                  {moods}
+                <li key={moods.key}>
+                  {moods.name}
                 </li>
               )
             })
           }
         </ul>
       </div>
-      
+    
 
       
     </div>
