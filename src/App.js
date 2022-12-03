@@ -1,7 +1,7 @@
 import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {ref, getDatabase, onValue, push, remove} from 'firebase/database';
+import {ref, getDatabase, onValue, push, remove, update} from 'firebase/database';
 
 
 // Setup a state variable to store the user input data
@@ -70,6 +70,14 @@ function App() {
 
   }
 
+  const handleClearBoard = (e) => {
+    e.preventDefault();
+
+    const database = getDatabase(app);
+    const dbRef = ref(database);
+
+    remove(dbRef)
+  }
 
 
   return (
@@ -105,6 +113,7 @@ function App() {
         </fieldset>
 
         <button onClick={handleSubmit}>Submit</button>
+        
       </form>
 
       {/* This is just gonna be the displayed data section */}
@@ -122,7 +131,7 @@ function App() {
         </ul>
       </div>
     
-
+      <button onClick={handleClearBoard}>Clear</button>
       
     </div>
   );
