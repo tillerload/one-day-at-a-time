@@ -2,6 +2,7 @@ import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
 import {ref, getDatabase, onValue, push, remove, update} from 'firebase/database';
+import Form from './Form.js';
 
 
 // Setup a state variable to store the user input data
@@ -26,11 +27,6 @@ function App() {
 
 
 
-  // const emotions = {
-  //   sad: {
-
-  //   }
-  // }
 
 
   useEffect(() => {
@@ -44,7 +40,7 @@ function App() {
       for (let key in data ) {
         // console.log(data[key]);
         updatedDbInfo.push({key: key, name: data[key]});
-        console.log(key)
+        // console.log(key)
       }
       setMoods(updatedDbInfo);
     })
@@ -98,23 +94,10 @@ function App() {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
       </section>
 
-      <form action="submit">
-        <fieldset>
-          <legend>How are you feeling today?</legend>
-
-          <label htmlFor="happy">Happy</label>
-          <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' onChange={handleInputChange}/>
-
-          <label htmlFor="okay">Okay</label>
-          <input type="radio" name='mood-options' value={'okay'} id='okay-feeling' onChange={handleInputChange}/>
-
-          <label htmlFor="sad">Sad</label>
-          <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' onChange={handleInputChange}/>
-        </fieldset>
-
-        <button onClick={handleSubmit}>Submit</button>
-        
-      </form>
+      <Form
+      handleSubmit={handleSubmit}
+      handleInputChange={handleInputChange}
+      />
 
       {/* This is just gonna be the displayed data section */}
       <div>
