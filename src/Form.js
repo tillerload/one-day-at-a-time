@@ -2,6 +2,7 @@
 
 const Form = ({ handleInputChange, handleSubmit}) => {
 
+  
 
   return(
   <form action="submit">
@@ -11,8 +12,8 @@ const Form = ({ handleInputChange, handleSubmit}) => {
           <label htmlFor="happy">Happy</label>
           <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' onChange={handleInputChange}/>
 
-          <label htmlFor="okay">Okay</label>
-          <input type="radio" name='mood-options' value={'okay'} id='okay-feeling' onChange={handleInputChange}/>
+          <label htmlFor="okay" className="okay-label">Okay</label>
+          <input type="radio" name='mood-options' className="okay-input" value={'okay'} id='okay-feeling' onChange={handleInputChange}/>
 
           <label htmlFor="sad">Sad</label>
           <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' onChange={handleInputChange}/>

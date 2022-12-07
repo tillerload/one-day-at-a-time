@@ -1,7 +1,7 @@
 import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {ref, getDatabase, onValue, push, remove, update} from 'firebase/database';
+import {ref, getDatabase, onValue, push, remove,} from 'firebase/database';
 import Form from './Form.js';
 
 
@@ -79,42 +79,49 @@ function App() {
   return (
     <div className="App">
       <header>
-        <nav>
-          <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">About</a></li>
-          <li><a href="">Calendar</a></li>
-          </ul>
-        </nav>
-        <h1>one day at a time</h1>
+        <div className="wrapper">
+          <h1>one day at a time</h1>
+        </div>
       </header>
 
-      <section className="about-section">
-        <h2>How does it work?</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
+      <section className="about-and-submit">
+        <div className="about-section">
+          <div className="wrapper">
+          <h2>How does it work?</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
+          </div>
+        </div>
+        
+        <div className="user-submit">
+          <div className="wrapper">
+          <Form
+          handleSubmit={handleSubmit}
+          handleInputChange={handleInputChange}
+          />
+          </div>
+        </div>
+
       </section>
 
-      <Form
-      handleSubmit={handleSubmit}
-      handleInputChange={handleInputChange}
-      />
-
       {/* This is just gonna be the displayed data section */}
-      <div>
-        <ul>
-          {
-            moods.map(moods => {
-              return(
-                <li key={moods.key}>
-                  {moods.name}
-                </li>
-              )
-            })
-          }
-        </ul>
-      </div>
-    
-      <button onClick={handleClearBoard}>Clear</button>
+      <section className="calendar">
+        <div className="wrapper">
+          <ul>
+            {
+              moods.map(moods => {
+                return(
+                  <li key={moods.key} className={ moods.name }>
+                    {moods.name}
+                  </li>
+                )
+              })
+            }
+          </ul>
+      
+          <button onClick={handleClearBoard}>Clear</button>
+
+        </div>
+      </section>
       
     </div>
   );
