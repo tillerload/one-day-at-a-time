@@ -3,6 +3,8 @@ import './App.css';
 import {useState, useEffect} from 'react';
 import {ref, getDatabase, onValue, push, remove,} from 'firebase/database';
 import Form from './Form.js';
+import Footer from './Footer';
+
 
 
 // Setup a state variable to store the user input data
@@ -30,17 +32,16 @@ function App() {
 
 
   useEffect(() => {
+    document.title = 'one day at a time';
+
     const database = getDatabase(app);
     const dbRef = ref(database);
 
     onValue(dbRef, (response) => {
-      // console.log(response.val());
       const updatedDbInfo = [];
       const data = response.val();
       for (let key in data ) {
-        // console.log(data[key]);
         updatedDbInfo.push({key: key, name: data[key]});
-        // console.log(key)
       }
       setMoods(updatedDbInfo);
     })
@@ -49,7 +50,6 @@ function App() {
 
 
   const handleInputChange = (e) => {
-    // console.log(e.target.value)
     setUserInput(e.target.value);
   }
 
@@ -60,9 +60,6 @@ function App() {
     const dbRef = ref(database);
 
     push(dbRef, userInput);
-
-    // as of right now it seems i do not need to reset user inputs due to the radio buttons.
-    // setUserInput('');
 
   }
 
@@ -87,8 +84,8 @@ function App() {
       <section className="about-and-submit">
         <div className="about-section">
           <div className="wrapper">
-          <h2>How does it work?</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse libero dolores adipisci quidem totam nisi voluptas, beatae dolor, nulla porro id odio ullam voluptatum eos provident vero reiciendis quis labore?</p>
+            <h2>How does it work?</h2>
+            <p>idk</p>
           </div>
         </div>
         
@@ -97,13 +94,13 @@ function App() {
           <Form
           handleSubmit={handleSubmit}
           handleInputChange={handleInputChange}
+          handleClearBoard={handleClearBoard}
           />
           </div>
         </div>
 
       </section>
 
-      {/* This is just gonna be the displayed data section */}
       <section className="calendar">
         <div className="wrapper">
           <ul>
@@ -118,11 +115,14 @@ function App() {
             }
           </ul>
       
-          <button onClick={handleClearBoard}>Clear</button>
+          
 
         </div>
       </section>
       
+      <footer>
+        <Footer/>
+      </footer>
     </div>
   );
 }
