@@ -85,7 +85,7 @@ function App() {
         <div className="about-section">
           <div className="wrapper">
             <h2>How does it work?</h2>
-            <p>idk</p>
+            <p>one day at a time is a daily mood tracker. Just pop on once a day, enter how you're feeling on that given day from our options and BAM you're all set!</p>
           </div>
         </div>
         
