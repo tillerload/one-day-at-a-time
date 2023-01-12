@@ -6,31 +6,48 @@ html { box-sizing: border-box;}
 
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap');
+
+
+/* font-family: 'Noto Sans', sans-serif; */ 
+
 html {
   background-color: black;
   font-size: 125%;
   color: white;
+  font-weight: 300;
+
 }
 
 /* header */
 
 .wrapper {
   margin: 0 auto;
-  width: 90%;
+  width: 80%;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 header {
   height: 25vh;
 }
 
+header .wrapper h1 {
+  font-weight: 300;
+}
+
 /* about setion */
 
 .about-and-submit {
   display: flex;
+  padding-bottom: 75px;
 }
 
 .about-section {
   width: 50%;
+}
+
+.about-section h2 {
+  font-weight: 400;
 }
 
 /* user submit section */
@@ -41,24 +58,100 @@ header {
 
 /* form section */
 
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 form fieldset {
   border: none;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+legend {
+  padding-bottom: 20px;
+  font-weight: 400;
+}
+
+label {
+  display: none;
+}
+
+input {
+  -webkit-appearance: none;
+  appearance: none;    
+  height: 30px;
+  width: 60px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: all 0.15s;
+  border-radius: 0;
+}
+
+input:hover {
+  cursor: pointer;
+}
+
+input:checked {
+  transform: scale(1.3);
+  border: 2px solid white;
+}
+
+.happy-input {
+  background-color: #FDEF3B;
+}
+
+.okay-input {
+  background-color: grey;
+}
+
+.sad-input {
+  background-color: #5F84A2;
+}
+
+/* Buttons! */
+
+button {
+  background-color: transparent;
+  border: white solid 2px;
+  color: white;
+  text-transform: capitalize;
+  width: 100px;
+  height: 50px;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.input-buttons button {
+  margin: 5px 15px;
+  padding: 0;
 }
 
 
 /* calendar section */
 
+.calendar {
+  padding-bottom: 50px;
+  height: 875px;
+}
+
 .calendar .sad {
-  background-color: blue;
-  color: blue;
+  background-color: #5F84A2;
+  color: #5F84A2;
   
 }
 
-.calendar .happy {
-  background-color: yellow;
-  color: yellow;
+.calendar .hap {
+  background-color: #FDEF3B;
+  color: #FDEF3B;
 }
 
 .calendar .okay {
@@ -70,7 +163,7 @@ form fieldset {
   display: flex;
   list-style: none;
   flex-wrap: wrap;
-  width: 800px;
+  width: 732px;
   padding: 0;
   
 }
@@ -88,7 +181,20 @@ form fieldset {
   align-items: center;
 }
 
+/* footer */
 
+footer {
+  background-color: white;
+  margin: 0;
+  padding: 15px 0 15px 0;
+}
 
+footer p {
+  margin: 0;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 
 

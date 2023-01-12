@@ -1,6 +1,6 @@
 
 
-const Form = ({ handleInputChange, handleSubmit}) => {
+const Form = ({ handleInputChange, handleSubmit, handleClearBoard }) => {
 
   
 
@@ -10,16 +10,19 @@ const Form = ({ handleInputChange, handleSubmit}) => {
           <legend>How are you feeling today?</legend>
 
           <label htmlFor="happy">Happy</label>
-          <input type="radio" name='mood-options' value={'happy'} id='happy-feeling' onChange={handleInputChange}/>
+          <input type="radio" name='mood-options' className="happy-input" value={'hap'} id='happy-feeling' onChange={handleInputChange}/>
 
           <label htmlFor="okay" className="okay-label">Okay</label>
           <input type="radio" name='mood-options' className="okay-input" value={'okay'} id='okay-feeling' onChange={handleInputChange}/>
 
           <label htmlFor="sad">Sad</label>
-          <input type="radio" name='mood-options' value={'sad'} id='sad-feeling' onChange={handleInputChange}/>
+          <input type="radio" name='mood-options' className="sad-input" value={'sad'} id='sad-feeling' onChange={handleInputChange}/>
         </fieldset>
 
-        <button onClick={handleSubmit}>Submit</button>
+        <div className="input-buttons">
+          <button onClick={handleSubmit}>Submit</button>
+          <button onClick={handleClearBoard}>Clear</button>
+        </div>
         
       </form>
   )
