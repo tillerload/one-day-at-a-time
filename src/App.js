@@ -7,18 +7,6 @@ import Footer from './Footer';
 
 
 
-// Setup a state variable to store the user input data
-// create a map loop for our data from firebase, itll be an array so this lets me edit the new array created through map
-// need to make use of useEffect so that everytime a user makes an input and in turn our code updates useState, it doesnt cause a re render to the whole page
-// make use of database, dbref and all those good prebuilt components
-// use on click and such to handle changes in form
-// use handleSubmit for the submit button
-// using the array from map ill be able to display the user choice on the page
-// for creating the clear button i think ill just use an if statement that looks for the array length. array.length === 31 {whatever the function ends up being to overwrite the currently displayed data. something silly im sure}
-// things to remember:
-  // Adding a key to values created from user inputs
-  // this is react do not touch the document 
-  // use {} when i want to insert vanilla JS
 
 
 function App() {
