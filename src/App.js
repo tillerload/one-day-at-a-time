@@ -2,8 +2,8 @@ import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
 import {ref, getDatabase, onValue, push, remove,} from 'firebase/database';
-import Form from './Form.js';
-import Footer from './Footer';
+import Form from './comp/Form.js';
+import Footer from './comp/Footer';
 
 
 
@@ -14,9 +14,6 @@ function App() {
   const [moods, setMoods] = useState([]);
 
   const [userInput, setUserInput] = useState('');
-
-
-
 
 
   useEffect(() => {
@@ -36,10 +33,8 @@ function App() {
 
   }, [])
 
+  // This is good to stay here! ^^^
 
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -50,16 +45,6 @@ function App() {
     push(dbRef, userInput);
 
   }
-
-  const handleClearBoard = (e) => {
-    e.preventDefault();
-
-    const database = getDatabase(app);
-    const dbRef = ref(database);
-
-    remove(dbRef)
-  }
-
 
   return (
     <div className="App">
@@ -81,8 +66,6 @@ function App() {
           <div className="wrapper">
           <Form
           handleSubmit={handleSubmit}
-          handleInputChange={handleInputChange}
-          handleClearBoard={handleClearBoard}
           />
           </div>
         </div>

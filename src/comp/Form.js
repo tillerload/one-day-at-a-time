@@ -1,8 +1,11 @@
+import ClearButton from "./ClearButton";
 
+const Form = ({ handleInputChange, handleSubmit }) => {
 
-const Form = ({ handleInputChange, handleSubmit, handleClearBoard }) => {
-
-  
+  const handleInputChange = (e) => {
+    setUserInput(e.target.value);
+    console.log(setUserInput)
+  }
 
   return(
   <form action="submit">
@@ -21,7 +24,7 @@ const Form = ({ handleInputChange, handleSubmit, handleClearBoard }) => {
 
         <div className="input-buttons">
           <button onClick={handleSubmit}>Submit</button>
-          <button onClick={handleClearBoard}>Clear</button>
+          <ClearButton />
         </div>
         
       </form>
