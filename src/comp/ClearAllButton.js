@@ -1,7 +1,7 @@
 import {ref, getDatabase, remove,} from 'firebase/database';
 import app from '../firebase.js';
 
-const ClearButton = () => {
+const ClearAllButton = () => {
 
   const fullClearCalendar = (e) => {
     e.preventDefault();
@@ -17,4 +17,4 @@ const ClearButton = () => {
   )
 }
 
-export default ClearButton;
+export default ClearAllButton;

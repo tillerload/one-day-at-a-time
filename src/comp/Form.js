@@ -1,14 +1,30 @@
-import ClearButton from "./ClearButton";
+import ClearAllButton from "./ClearAllButton";
+import {ref, getDatabase, onValue, push, remove,} from 'firebase/database';
+import {useState, useEffect} from 'react';
+import app from '../firebase.js';
 
-const Form = ({ handleInputChange, handleSubmit }) => {
+const Form = () => {
+
+  const [userInput, setUserInput] = useState('');
 
   const handleInputChange = (e) => {
     setUserInput(e.target.value);
     console.log(setUserInput)
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const database = getDatabase(app);
+    const dbRef = ref(database);
+
+    push(dbRef, userInput);
+
+  }
+
   return(
   <form action="submit">
+
         <fieldset>
           <legend>How are you feeling today?</legend>
 
@@ -24,7 +40,7 @@ const Form = ({ handleInputChange, handleSubmit }) => {
 
         <div className="input-buttons">
           <button onClick={handleSubmit}>Submit</button>
-          <ClearButton />
+          <ClearAllButton />
         </div>
         
       </form>

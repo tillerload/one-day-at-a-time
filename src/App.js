@@ -1,20 +1,14 @@
 import app from './firebase.js';
 import './App.css';
 import {useState, useEffect} from 'react';
-import {ref, getDatabase, onValue, push, remove,} from 'firebase/database';
+import {ref, getDatabase, onValue} from 'firebase/database';
 import Form from './comp/Form.js';
 import Footer from './comp/Footer';
-
-
-
 
 
 function App() {
 
   const [moods, setMoods] = useState([]);
-
-  const [userInput, setUserInput] = useState('');
-
 
   useEffect(() => {
     document.title = 'one day at a time';
@@ -32,19 +26,6 @@ function App() {
     })
 
   }, [])
-
-  // This is good to stay here! ^^^
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const database = getDatabase(app);
-    const dbRef = ref(database);
-
-    push(dbRef, userInput);
-
-  }
 
   return (
     <div className="App">
@@ -64,12 +45,9 @@ function App() {
         
         <div className="user-submit">
           <div className="wrapper">
-          <Form
-          handleSubmit={handleSubmit}
-          />
+          <Form />
           </div>
         </div>
-
       </section>
 
       <section className="calendar">
@@ -85,9 +63,6 @@ function App() {
               })
             }
           </ul>
-      
-          
-
         </div>
       </section>
       
